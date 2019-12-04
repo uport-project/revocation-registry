@@ -35,7 +35,7 @@ const blockNumber = revoked.toNumber() // block number when it was revoked by `i
 
 ## Deployments
 
-Rinkeby: 0xf9494aE9AbA7B54856Ee56F9AdFC635988Df1A36
+Rinkeby: 0x97fd27892cdcD035dAe1fe71235c636044B59348
 
 ## Contributions
 
@@ -46,4 +46,3 @@ And, of course, please make sure to update tests as appropriate.
 ## License
 
 https://choosealicense.com/licenses/apache-2.0/
-

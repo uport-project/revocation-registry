@@ -17,7 +17,10 @@ contract('RevocationRegistry', function(accounts) {
         assert.equal( e.message,
                       'invalid bytes32 value (arg="digest", coderType="bytes32", value="0xaabbccddeeff00112233445566778899aabbccddeeff0011223344556677889900")'
         );
+        return
       }
+
+      expect.fail("should have failed with an error")
     });
 
     it("Should throw an invalid value when digest is not a byte array", async () => {
@@ -27,7 +30,9 @@ contract('RevocationRegistry', function(accounts) {
         assert.equal( e.message,
                       'invalid bytes32 value (arg="digest", coderType="bytes32", value="some non hex string")'
         );
+        return
       }
+      expect.fail("should have failed with an error")
     });
 
     it("Should return 0 for non revoked digest", async () => {
@@ -64,8 +69,11 @@ contract('RevocationRegistry', function(accounts) {
         await registryInstance.revoke( digest, { from: accounts[0] })
       } catch (e) {
         assert.equal( e.message, 'Returned error: VM Exception while processing transaction: revert' );
+        return
       }
+      expect.fail("second transaction went through when it should have been rejected")
     });
+
   })
 
 });
