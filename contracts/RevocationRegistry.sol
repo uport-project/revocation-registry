@@ -4,12 +4,8 @@ contract RevocationRegistry {
 
     mapping(bytes32 => mapping(address => uint)) private revocations;
 
-    modifier onlyOnce(bytes32 digest) {
+    function revoke(bytes32 digest) public {
         require (revocations[digest][msg.sender] == 0);
-        _;
-    }
-
-    function revoke(bytes32 digest) public onlyOnce(digest) {
         revocations[digest][msg.sender] = block.number;
         emit Revoked(msg.sender, digest);
     }
