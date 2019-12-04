@@ -4,19 +4,19 @@ contract RevocationRegistry {
 
     mapping(bytes32 => mapping(address => uint)) private revocations;
 
-    function revoke(bytes32 digest) public returns (bool) {
-        if (revocations[digest][msg.sender] == 0) {
-            revocations[digest][msg.sender] = block.number;
-            emit Revoked(msg.sender, digest);
-            return true;
-        } else {
-            return false;
-        }
+    modifier onlyOnce(bytes32 digest) {
+        require (revocations[digest][msg.sender] == 0);
+        _;
     }
 
-    function revoked(address party, bytes32 digest) public view returns (uint) {
-        return revocations[digest][party];
+    function revoke(bytes32 digest) public onlyOnce(digest) {
+        revocations[digest][msg.sender] = block.number;
+        emit Revoked(msg.sender, digest);
     }
 
-    event Revoked(address revoker, bytes32 digest);
+    function revoked(address issuer, bytes32 digest) public view returns (uint) {
+        return revocations[digest][issuer];
+    }
+
+    event Revoked(address issuer, bytes32 digest);
 }
