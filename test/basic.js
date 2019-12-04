@@ -53,21 +53,18 @@ contract('RevocationRegistry', function(accounts) {
       let event = tx.logs[0]
 
       assert.equal(event.event, "Revoked");
-      assert.equal(event.args.revoker, accounts[0]);
+      assert.equal(event.args.issuer, accounts[0]);
       assert.equal(event.args.digest, digest);
     });
 
     it("Should not revoke same digest twice", async () => {
       const digest = "0xabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcdabcd"
-      let tx1 = await registryInstance.revoke( digest, { from: accounts[0] })
-      let result1 = await registryInstance.revoked.call( accounts[0], digest )
-
-      let tx2 = await registryInstance.revoke( digest, { from: accounts[0] })
-      let result2 = await registryInstance.revoked.call( accounts[0], digest )
-
-      assert.isEmpty(tx2.logs)
-
-      assert.equal(result1.toNumber(), result2.toNumber())
+      await registryInstance.revoke( digest, { from: accounts[0] })
+      try {
+        await registryInstance.revoke( digest, { from: accounts[0] })
+      } catch (e) {
+        assert.equal( e.message, 'Returned error: VM Exception while processing transaction: revert' );
+      }
     });
   })
 
