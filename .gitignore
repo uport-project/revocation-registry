@@ -247,8 +247,6 @@ blockchain/history
 
 #truffle
 .tern-port
-yarn.lock
-package-lock.json
 
 ### VisualStudioCode ###
 .vscode/*

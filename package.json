@@ -1,0 +1,30 @@
+{
+  "name": "revocation-registry",
+  "version": "0.1.0",
+  "description": "a registry storing hashes of revoked credentials on an ethereum blockchain",
+  "main": "build/contracts/RevocationRegistry.json",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "solhint": "^2.3.0",
+    "truffle": "^5.1.8",
+    "truffle-hdwallet-provider": "^1.0.17"
+  },
+  "scripts": {
+    "build": "truffle compile",
+    "test": "truffle test",
+    "lint": "solhint contracts/RevocationRegistry.sol"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uport-project/revocation-registry"
+  },
+  "files": [
+    "build/contracts/RevocationRegistry.json",
+    "contracts/RevocationRegistry.sol"
+  ],
+  "author": "Mircea Nistor <mircea.nistor@consensys.net>",
+  "license": "Apache-2.0"
+}
