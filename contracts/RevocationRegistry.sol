@@ -4,8 +4,10 @@ contract RevocationRegistry {
 
     mapping(bytes32 => mapping(address => uint)) private revocations;
 
+    event Revoked(address issuer, bytes32 digest);
+
     function revoke(bytes32 digest) public {
-        require (revocations[digest][msg.sender] == 0);
+        require(revocations[digest][msg.sender] == 0);
         revocations[digest][msg.sender] = block.number;
         emit Revoked(msg.sender, digest);
     }
@@ -14,5 +16,4 @@ contract RevocationRegistry {
         return revocations[digest][issuer];
     }
 
-    event Revoked(address issuer, bytes32 digest);
 }
