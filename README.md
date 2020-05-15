@@ -35,7 +35,11 @@ const blockNumber = revoked.toNumber() // block number when it was revoked by `i
 
 ## Deployments
 
-Rinkeby: 0x97fd27892cdcD035dAe1fe71235c636044B59348
+Mainnet: 0x59212F5AC1Acf7466b13077b61c56275c57C97d5
+Rinkeby: 0x59212F5AC1Acf7466b13077b61c56275c57C97d5
+Ropsten: 0x59212F5AC1Acf7466b13077b61c56275c57C97d5
+Kovan:   0x59212F5AC1Acf7466b13077b61c56275c57C97d5
+Goerli:  0x59212F5AC1Acf7466b13077b61c56275c57C97d5
 
 ## Contributions
 
